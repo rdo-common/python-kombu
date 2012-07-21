@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        1.1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -63,6 +63,9 @@ rm -rf docs/.static
 %{python_sitelib}/%{srcname}*.egg-info
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.3-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
