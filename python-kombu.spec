@@ -138,6 +138,7 @@ popd
 %changelog
 * Thu Sep 20 2012 Matthias Runge <mrunge@redhat.com> - 2.4.7-1
 - update to new upstream version 2.4.7
+
 * Sun Aug 26 2012 Matthias Runge <mrunge@matthias-runge.de> - 2.4.3-1
 - update to new upstream version 2.4.3
 
