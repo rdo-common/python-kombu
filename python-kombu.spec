@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        2.4.7
+Version:        2.4.8
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -136,6 +136,9 @@ popd
 
 
 %changelog
+* Tue Nov 06 2012 Matthias Runge <mrunge@redhat.com> - 2.4.8-1
+- update to new upstream version 2.4.8
+
 * Thu Sep 20 2012 Matthias Runge <mrunge@redhat.com> - 2.4.7-1
 - update to new upstream version 2.4.7
 
