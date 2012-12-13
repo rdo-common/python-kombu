@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        2.5.3
+Version:        2.5.4
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -113,10 +113,10 @@ popd
 #rm -rf docs
 #rm -f htmldocs/.buildinfo
 
+# sadly, tests don't succeed, yet
 #%check
 #%{__python} setup.py test
-
-# sadly, tests don't succeed, yet
+#
 #%if 0%{?with_python3}
 #pushd %{py3dir}
 #%{__python3} setup.py test
@@ -136,6 +136,9 @@ popd
 
 
 %changelog
+* Thu Dec 13 2012 Matthias Runge <mrunge@redhat.com> - 2.5.4-1
+- update to upstream version 2.5.4 (rhbz#886001)
+
 * Tue Dec 04 2012 Matthias Runge <mrunge@redhat.com> - 2.5.3-1
 - update to latest upstream version 2.5.3
 
