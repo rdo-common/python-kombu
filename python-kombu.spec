@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        2.5.7
+Version:        2.5.8
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -136,32 +136,35 @@ popd
 
 
 %changelog
+* Sat Mar 23 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.8-1
+- Updated to latest upstream version 2.5.8
+
 * Sat Mar 09 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.7-1
-- update to latest upstream version 2.5.7
+- Updated to latest upstream version 2.5.7
 
 * Mon Feb 11 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.6-1
-- update to latest upstream version 2.5.6
+- Updated to latest upstream version 2.5.6
 
 * Sat Feb 09 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.5-1
-- update to latest upstream version 2.5.5
+- Updated to latest upstream version 2.5.5
 
 * Thu Dec 13 2012 Matthias Runge <mrunge@redhat.com> - 2.5.4-1
-- update to upstream version 2.5.4 (rhbz#886001)
+- Update to upstream version 2.5.4 (rhbz#886001)
 
 * Tue Dec 04 2012 Matthias Runge <mrunge@redhat.com> - 2.5.3-1
-- update to latest upstream version 2.5.3
+- Update to latest upstream version 2.5.3
 
 * Mon Nov 26 2012 Matthias Runge <mrunge@redhat.com> - 2.4.10-1
-- update to latest upstream version 2.4.10
+- Update to latest upstream version 2.4.10
 
 * Tue Nov 06 2012 Matthias Runge <mrunge@redhat.com> - 2.4.8-1
 - update to new upstream version 2.4.8
 
 * Thu Sep 20 2012 Matthias Runge <mrunge@redhat.com> - 2.4.7-1
-- update to new upstream version 2.4.7
+- Update to new upstream version 2.4.7
 
 * Sun Aug 26 2012 Matthias Runge <mrunge@matthias-runge.de> - 2.4.3-1
-- update to new upstream version 2.4.3
+- Update to new upstream version 2.4.3
 
 * Thu Aug 23 2012 Matthias Runge <mrunge@matthias-runge.de> - 2.4.0-1
 - update to new upstream version 2.4.0
