@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        2.5.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -47,6 +47,7 @@ BuildRequires: python-msgpack
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
 #BuildRequires:  python-couchdb
+Requires: python-amqp
 
 %description
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -64,6 +65,7 @@ Summary:        AMQP Messaging Framework for Python3
 Group:          Development/Languages
 
 Requires:       python3
+Requires:       python3-amqp
 
 %description -n python3-kombu
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -114,14 +116,14 @@ popd
 #rm -f htmldocs/.buildinfo
 
 # sadly, tests don't succeed, yet
-#%check
-#%{__python} setup.py test
+#%%check
+#%%{__python} setup.py test
 #
-#%if 0%{?with_python3}
-#pushd %{py3dir}
-#%{__python3} setup.py test
+#%%if 0%%{?with_python3}
+#pushd %%{py3dir}
+#%%{__python3} setup.py test
 #popd
-#%endif # with_python3
+#%%endif # with_python3
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
@@ -136,6 +138,10 @@ popd
 
 
 %changelog
+* Mon Jun 24 2013 Rahul Sundaram <sundaram@fedoraproject.org> - 2.5.10-2
+- add requires on python-amqp/python3-amqp. resolves rhbz#974684
+- fix rpmlint warnings about macro in comments
+
 * Sun Apr 21 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.10-1
 - Updated to latest upstream version 2.5.10
 
