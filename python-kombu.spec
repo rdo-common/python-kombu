@@ -7,8 +7,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        2.5.10
-Release:        2%{?dist}
+Version:        2.5.12
+Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -86,7 +86,6 @@ This subpackage is for python3
 cp -a . %{py3dir}
 %endif
 
-
 %build
 %{__python} setup.py build
 
@@ -97,7 +96,6 @@ pushd %{py3dir}
 popd
 %endif # with_python3
 
-
 %install
 %{__python} setup.py install --skip-build --root %{buildroot}
 
@@ -106,7 +104,6 @@ pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
 %endif # with_python3
-
 
 # Documentation in docs folder is not useful without doing a make
 # Seems to have a circular dependency.  Not building for now
@@ -136,8 +133,10 @@ popd
 %{python3_sitelib}/*
 %endif # with_python3
 
-
 %changelog
+* Sat Jun 29 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.12-1
+- Updated to latest upstream version 2.5.12
+
 * Mon Jun 24 2013 Rahul Sundaram <sundaram@fedoraproject.org> - 2.5.10-2
 - add requires on python-amqp/python3-amqp. resolves rhbz#974684
 - fix rpmlint warnings about macro in comments
