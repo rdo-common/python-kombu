@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        2.5.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -134,6 +134,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.5.12-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Sat Jun 29 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.12-1
 - Updated to latest upstream version 2.5.12
 
