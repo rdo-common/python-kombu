@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        2.5.13
+Version:        2.5.14
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -134,7 +134,10 @@ popd
 %endif # with_python3
 
 %changelog
-* Wed Aug 21 2013 Mathhias Runge <mrunge@redhat.com> - 2.5.13-1
+* Sun Aug 25 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.14-1
+- Updated to latest upstream version 2.5.14 (rhbz#1000696)
+
+* Wed Aug 21 2013 Matthias Runge <mrunge@redhat.com> - 2.5.13-1
 - updated to latest upstream version 2.5.13 (rhbz#998104)
 
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.5.12-2
