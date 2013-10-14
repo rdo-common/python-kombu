@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        2.5.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -33,7 +33,6 @@ BuildRequires:  python3-coverage
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
 BuildRequires:  python-anyjson
-BuildRequires:  python-amqplib
 
 # required for tests:
 BuildRequires: python-nose-cover3
@@ -43,7 +42,12 @@ BuildRequires: python-mock
 BuildRequires: python-simplejson
 BuildRequires: PyYAML
 BuildRequires: python-msgpack
-# BuildRequires: python-amqp
+BuildRequires: python-amqp
+
+#%if 0%{?with_python3}
+#BuildRequires: python3-amqp
+#%endif
+
 # For documentation
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
@@ -83,6 +87,10 @@ This subpackage is for python3
 
 %prep
 %setup -q -n %{srcname}-%{version}
+
+# manage requirements on rpm base
+sed -i 's/>=1.0.13,<1.1.0/>=1.3.0/' requirements/default.txt
+
 %if 0%{?with_python3}
 cp -a . %{py3dir}
 %endif
@@ -114,8 +122,8 @@ popd
 #rm -f htmldocs/.buildinfo
 
 # sadly, tests don't succeed, yet
-#%check
-#%{__python} setup.py test
+%check
+%{__python} setup.py test
 # tests with py3 are failing currently
 #%if 0%{?with_python3}
 #pushd %{py3dir}
@@ -135,6 +143,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Mon Oct 14 2013 Matthias Runge <mrunge@redhat.com> - 2.5.15-2
+- enable tests for python2
+
 * Mon Oct 14 2013 Matthias Runge <mrunge@redhat.com> - 2.5.15-1
 - updated to 2.5.15 (rhbz#1016271)
 
