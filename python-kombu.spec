@@ -43,6 +43,7 @@ BuildRequires: python-mock
 BuildRequires: python-simplejson
 BuildRequires: PyYAML
 BuildRequires: python-msgpack
+BuildRequires: python-amqp
 # For documentation
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
