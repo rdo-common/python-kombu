@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.4
+Version:        3.0.5
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -143,6 +143,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Sun Nov 17 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.5-1
+- Updated to latest upstream version 3.0.5 (rhbz#1024916)
+
 * Sat Nov 16 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.4-1
 - Updated to latest upstream version 3.0.4 (rhbz#1024916)
 
