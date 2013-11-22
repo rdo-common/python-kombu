@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.5
+Version:        3.0.6
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -45,14 +45,20 @@ BuildRequires: python-msgpack
 BuildRequires: python-amqp
 
 #%if 0%{?with_python3}
-#BuildRequires: python3-amqp
+BuildRequires: python3-amqp
+
+# tests:
+BuildRequires: python3-nose
+BuildRequires: python3-nose-cover3
+BuildRequires: python3-mock
 #%endif
 
 # For documentation
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
 #BuildRequires:  python-couchdb
-Requires: python-amqp
+Requires: python-amqp >= 1.3.3
+Requires: python-anyjson >= 0.3.3
 
 %description
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -125,11 +131,11 @@ popd
 %check
 %{__python} setup.py test
 # tests with py3 are failing currently
-#%if 0%{?with_python3}
-#pushd %{py3dir}
-#%{__python3} setup.py test
-#popd
-#%endif # with_python3
+%if 0%{?with_python3}
+pushd %{py3dir}
+%{__python3} setup.py test
+popd
+%endif # with_python3
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
@@ -143,6 +149,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Fri Nov 22 2013 Matthias Runge <mrunge@redhat.com> - 3.0.6-1
+- update to 3.0.6 and enable tests for py3 as well 
+
 * Sun Nov 17 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.5-1
 - Updated to latest upstream version 3.0.5 (rhbz#1024916)
 
