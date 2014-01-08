@@ -1,4 +1,4 @@
-%if 0%{?fedora} > 12 || 0%{?rhel} > 6
+%if 0%{?fedora} > 12
 %global with_python3 1
 %else
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print (get_python_lib())")}
@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.6
+Version:        3.0.8
 Release:        1%{?dist}
 Summary:        AMQP Messaging Framework for Python
 
@@ -19,6 +19,7 @@ Source0:        http://pypi.python.org/packages/source/k/%{srcname}/%{srcname}-%
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
+
 %if 0%{?with_python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose
@@ -149,6 +150,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-1
+- update to 3.0.8 (rhbz#1037549)
+
 * Fri Nov 22 2013 Matthias Runge <mrunge@redhat.com> - 3.0.6-1
 - update to 3.0.6 and enable tests for py3 as well 
 
