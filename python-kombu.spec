@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
