@@ -9,6 +9,7 @@
 Name:           python-%{srcname}
 Version:        3.0.8
 Release:        1%{?dist}
+Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
 Group:          Development/Languages
@@ -95,9 +96,6 @@ This subpackage is for python3
 %prep
 %setup -q -n %{srcname}-%{version}
 
-# manage requirements on rpm base
-sed -i 's/>=1.0.13,<1.1.0/>=1.3.0/' requirements/default.txt
-
 %if 0%{?with_python3}
 cp -a . %{py3dir}
 %endif
@@ -150,6 +148,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-2
+- remove requirements patch, bump epoch to be upgradeable
+
 * Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-1
 - update to 3.0.8 (rhbz#1037549)
 
