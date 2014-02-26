@@ -7,8 +7,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.8
-Release:        2%{?dist}
+Version:        3.0.12
+Release:        1%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -148,6 +148,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Wed Feb 26 2014 Matthias Runge <mrunge@redhat.com> - 3.0.12-1
+- update to 3.0.12 (rhbz#1052424)
+
 * Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-2
 - remove requirements patch, bump epoch to be upgradeable
 
