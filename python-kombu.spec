@@ -45,9 +45,11 @@ BuildRequires: python-simplejson
 BuildRequires: PyYAML
 BuildRequires: python-msgpack
 BuildRequires: python-amqp
+BuildRequires: python-pymongo
 
 #%if 0%{?with_python3}
 BuildRequires: python3-amqp
+BuildRequires: python3-pymongo
 
 # tests:
 BuildRequires: python3-nose
