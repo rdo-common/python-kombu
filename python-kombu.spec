@@ -38,7 +38,6 @@ BuildRequires:  python-anyjson
 
 # required for tests:
 BuildRequires: python-nose-cover3
-BuildRequires: python-unittest2
 BuildRequires: python-coverage
 BuildRequires: python-mock
 BuildRequires: python-simplejson
@@ -103,7 +102,8 @@ cp -a . %{py3dir}
 %endif
 
 %build
-%{__python} setup.py build
+# Disabled for now because it's failing after the retirement of unittest2
+#%{__python2} setup.py build
 
 # build python3-kombu
 %if 0%{?with_python3}
@@ -113,7 +113,7 @@ popd
 %endif # with_python3
 
 %install
-%{__python} setup.py install --skip-build --root %{buildroot}
+%{__python2} setup.py install --skip-build --root %{buildroot}
 
 %if 0%{?with_python3}
 pushd %{py3dir}
@@ -130,7 +130,7 @@ popd
 
 # sadly, tests don't succeed, yet
 %check
-%{__python} setup.py test
+%{__python2} setup.py test
 # tests with py3 are failing currently
 %if 0%{?with_python3}
 pushd %{py3dir}
@@ -140,8 +140,8 @@ popd
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
-%{python_sitelib}/%{srcname}/
-%{python_sitelib}/%{srcname}*.egg-info
+%{python2_sitelib}/%{srcname}/
+%{python2_sitelib}/%{srcname}*.egg-info
 
 %if 0%{?with_python3}
 %files -n python3-kombu
