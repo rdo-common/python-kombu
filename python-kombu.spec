@@ -60,7 +60,7 @@ BuildRequires: python3-mock
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
 #BuildRequires:  python-couchdb
-Requires: python-amqp >= 1.3.3
+Requires: python-amqp >= 1.4.5
 Requires: python-anyjson >= 0.3.3
 
 %description
@@ -129,18 +129,18 @@ popd
 #rm -f htmldocs/.buildinfo
 
 # sadly, tests don't succeed, yet
-#%check
-#%{__python2} setup.py test
+%check
+%{__python2} setup.py test
 # tests with py3 are failing currently
-#%if 0%{?with_python3}
-#pushd %{py3dir}
-#%{__python3} setup.py test
-#popd
-#%endif # with_python3
+%if 0%{?with_python3}
+pushd %{py3dir}
+%{__python3} setup.py test
+popd
+%endif # with_python3
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
-%{python2_sitelib}/%{srcname}/
+%{python2_sitelib}/*
 %{python2_sitelib}/%{srcname}*.egg-info
 
 %if 0%{?with_python3}
