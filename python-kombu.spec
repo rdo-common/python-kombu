@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -102,8 +102,7 @@ cp -a . %{py3dir}
 %endif
 
 %build
-# Disabled for now because it's failing after the retirement of unittest2
-#%{__python2} setup.py build
+%{__python2} setup.py build
 
 # build python3-kombu
 %if 0%{?with_python3}
@@ -140,7 +139,7 @@ popd
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
-%{python2_sitelib}/*
+%{python2_sitelib}/kombu
 %{python2_sitelib}/%{srcname}*.egg-info
 
 %if 0%{?with_python3}
@@ -150,6 +149,10 @@ popd
 %endif # with_python3
 
 %changelog
+* Mon May 05 2014 Matthias Runge <mrunge@redhat.com> - 3.0.15-2
+- fix broken build
+- have files listed only once
+
 * Thu Apr 17 2014 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.15-1
 - Update to latest upstream version 3.0.15 (rhbz#1072265)
 
