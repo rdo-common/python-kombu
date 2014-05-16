@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.15
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -149,6 +149,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Wed May 14 2014 Bohuslav Kabrda <bkabrda@redhat.com> - 1:3.0.15-3
+- Rebuilt for https://fedoraproject.org/wiki/Changes/Python_3.4
+
 * Mon May 05 2014 Matthias Runge <mrunge@redhat.com> - 3.0.15-2
 - fix broken build
 - have files listed only once
