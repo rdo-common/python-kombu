@@ -7,8 +7,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.15
-Release:        4%{?dist}
+Version:        3.0.19
+Release:        1%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -149,6 +149,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Mon Jun 23 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.19-1
+- Update to latest upstream version 3.0.19 (rhbz#1095266)
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:3.0.15-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
@@ -169,65 +172,65 @@ popd
 - update to 3.0.12 (rhbz#1052424)
 
 * Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-2
-- remove requirements patch, bump epoch to be upgradeable
+- Remove requirements patch, bump epoch to be upgradeable
 
 * Wed Jan 08 2014 Matthias Runge <mrunge@redhat.com> - 3.0.8-1
-- update to 3.0.8 (rhbz#1037549)
+- Update to 3.0.8 (rhbz#1037549)
 
 * Fri Nov 22 2013 Matthias Runge <mrunge@redhat.com> - 3.0.6-1
-- update to 3.0.6 and enable tests for py3 as well 
+- Update to 3.0.6 and enable tests for py3 as well 
 
 * Sun Nov 17 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.5-1
 - Updated to latest upstream version 3.0.5 (rhbz#1024916)
 
 * Sat Nov 16 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.4-1
-- Updated to latest upstream version 3.0.4 (rhbz#1024916)
+- Update to latest upstream version 3.0.4 (rhbz#1024916)
 
 * Fri Nov 15 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.3-1
-- Updated to latest upstream version 3.0.3 (rhbz#1024916)
+- Update to latest upstream version 3.0.3 (rhbz#1024916)
 
 * Sun Nov 03 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.2-1
-- Updated to latest upstream version 3.0.2 (rhbz#1024916)
+- Updatd to latest upstream version 3.0.2 (rhbz#1024916)
 
 * Mon Oct 28 2013 Fabian Affolter <mail@fabian-affolter.ch> - 3.0.1-1
-- Updated to latest upstream version 3.0.1 (rhbz#1019148)
+- Update to latest upstream version 3.0.1 (rhbz#1019148)
 
 * Mon Oct 14 2013 Matthias Runge <mrunge@redhat.com> - 2.5.15-2
-- enable tests for python2
+- Enable tests for python2
 
 * Mon Oct 14 2013 Matthias Runge <mrunge@redhat.com> - 2.5.15-1
-- updated to 2.5.15 (rhbz#1016271)
+- Update to 2.5.15 (rhbz#1016271)
 
 * Sun Aug 25 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.14-1
-- Updated to latest upstream version 2.5.14 (rhbz#1000696)
+- Update to latest upstream version 2.5.14 (rhbz#1000696)
 
 * Wed Aug 21 2013 Matthias Runge <mrunge@redhat.com> - 2.5.13-1
-- updated to latest upstream version 2.5.13 (rhbz#998104)
+- Update to latest upstream version 2.5.13 (rhbz#998104)
 
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.5.12-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
 * Sat Jun 29 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.12-1
-- Updated to latest upstream version 2.5.12
+- Update to latest upstream version 2.5.12
 
 * Mon Jun 24 2013 Rahul Sundaram <sundaram@fedoraproject.org> - 2.5.10-2
-- add requires on python-amqp/python3-amqp. resolves rhbz#974684
-- fix rpmlint warnings about macro in comments
+- Add requires on python-amqp/python3-amqp. resolves rhbz#974684
+- Fix rpmlint warnings about macro in comments
 
 * Sun Apr 21 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.10-1
-- Updated to latest upstream version 2.5.10
+- Update to latest upstream version 2.5.10
 
 * Sat Mar 23 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.8-1
-- Updated to latest upstream version 2.5.8
+- Update to latest upstream version 2.5.8
 
 * Sat Mar 09 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.7-1
-- Updated to latest upstream version 2.5.7
+- Update to latest upstream version 2.5.7
 
 * Mon Feb 11 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.6-1
-- Updated to latest upstream version 2.5.6
+- Update to latest upstream version 2.5.6
 
 * Sat Feb 09 2013 Fabian Affolter <mail@fabian-affolter.ch> - 2.5.5-1
-- Updated to latest upstream version 2.5.5
+- Update to latest upstream version 2.5.5
 
 * Thu Dec 13 2012 Matthias Runge <mrunge@redhat.com> - 2.5.4-1
 - Update to upstream version 2.5.4 (rhbz#886001)
@@ -239,7 +242,7 @@ popd
 - Update to latest upstream version 2.4.10
 
 * Tue Nov 06 2012 Matthias Runge <mrunge@redhat.com> - 2.4.8-1
-- update to new upstream version 2.4.8
+- Update to new upstream version 2.4.8
 
 * Thu Sep 20 2012 Matthias Runge <mrunge@redhat.com> - 2.4.7-1
 - Update to new upstream version 2.4.7
@@ -248,12 +251,12 @@ popd
 - Update to new upstream version 2.4.3
 
 * Thu Aug 23 2012 Matthias Runge <mrunge@matthias-runge.de> - 2.4.0-1
-- update to new upstream version 2.4.0
+- Update to new upstream version 2.4.0
 
 * Fri Aug 03 2012 Matthias Runge <mrunge@matthias-runge.de> - 2.3.2-1
-- update to version 2.3.2
-- enable tests
-- require python2 and/or python3
+- Update to version 2.3.2
+- Enable tests
+- Require python2 and/or python3
 
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
@@ -262,7 +265,7 @@ popd
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
 * Fri Jul 15 2011 Rahul Sundaram <sundaram@fedoraproject.org> - 1.1.3-1
-- initial spec.  
-- derived from the one written by Fabian Affolter
-- spec patch from Lakshmi Narasimhan
+- Initial spec
+- Derived from the one written by Fabian Affolter
+- Spec patch from Lakshmi Narasimhan
 
