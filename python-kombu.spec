@@ -1,8 +1,14 @@
+%if 0%{?fedora}
+%global with_python3 1
+%else
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print (get_python_lib())")}
+%endif
+
 %global srcname kombu
 
 Name:           python-%{srcname}
 Version:        3.0.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -15,14 +21,17 @@ BuildArch:      noarch
 
 BuildRequires:  python2-devel
 
+%if 0%{?with_python3}
 BuildRequires:  python3-devel
 BuildRequires:  python3-nose
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-anyjson
 
+# for python3 tests
 BuildRequires:  python3-mock
 BuildRequires:  python3-nose-cover3
 BuildRequires:  python3-coverage
+%endif # if with_python3
 
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
@@ -38,12 +47,15 @@ BuildRequires: python-msgpack
 BuildRequires: python-amqp
 BuildRequires: python-pymongo
 
+%if 0%{?with_python3}
 BuildRequires: python3-amqp
 BuildRequires: python3-pymongo
 
+# tests:
 BuildRequires: python3-nose
 BuildRequires: python3-nose-cover3
 BuildRequires: python3-mock
+%endif
 
 # For documentation
 #BuildRequires:  pymongo python-sphinx
@@ -62,6 +74,7 @@ The aim of Kombu is to make messaging in Python as easy as possible by
 providing an idiomatic high-level interface for the AMQP protocol, and
 also provide proven and tested solutions to common messaging problems.
 
+%if 0%{?with_python3}
 %package -n python3-kombu
 Summary:        AMQP Messaging Framework for Python3
 Group:          Development/Languages
@@ -80,27 +93,38 @@ providing an idiomatic high-level interface for the AMQP protocol, and
 also provide proven and tested solutions to common messaging problems.
 
 This subpackage is for python3
+%endif # with_python3
 
 %prep
 %setup -q -n %{srcname}-%{version}
+
+%if 0%{?with_python3}
 cp -a . %{py3dir}
+%endif
 
 %build
 %{__python2} setup.py build
 
 # build python3-kombu
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py build
 popd
+%endif # with_python3
 
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+#fix non executable test script
+chmod +x %{buildroot}/%{python_sitelib}/kombu/tests/test_serialization.py
 
+
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
 #fix non executable test script
 chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
+%endif
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
@@ -112,6 +136,10 @@ chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %{python3_sitelib}/*
 
 %changelog
+* Tue Jul 15 2014 Rahul Sundaram <sundaram@fedoraproject.org> - 1:3.0.21-2
+- reintroduce adjusted conditions for EPEL
+- fix permission for a test script
+
 * Sun Jul 13 2014 Rahul Sundaram <sundaram@fedoraproject.org> - 1:3.0.21-1
 - update to 3.0.21
 - drop conditionals in spec
