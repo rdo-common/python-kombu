@@ -7,8 +7,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.21
-Release:        2%{?dist}
+Version:        3.0.22
+Release:        1%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
 
@@ -136,6 +136,9 @@ chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %{python3_sitelib}/*
 
 %changelog
+* Thu Jul 03 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.22-1
+- Update to latest upstream version 3.0.22 (rhbz#1118674)
+
 * Tue Jul 15 2014 Rahul Sundaram <sundaram@fedoraproject.org> - 1:3.0.21-2
 - reintroduce adjusted conditions for EPEL
 - fix permission for a test script
