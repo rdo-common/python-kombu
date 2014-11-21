@@ -7,7 +7,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.23
+Version:        3.0.24
 Release:        1%{?dist}
 Epoch:          1
 Summary:        AMQP Messaging Framework for Python
@@ -136,6 +136,9 @@ chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %{python3_sitelib}/*
 
 %changelog
+* Fri Nov 21 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.24-1
+- Update to latest upstream version 3.0.24 (rhbz#1166402)
+
 * Thu Sep 18 2014 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.23-1
 - Update to latest upstream version 3.0.23 (rhbz#1142995)
 
