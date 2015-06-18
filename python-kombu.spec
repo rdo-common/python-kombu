@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.26
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -136,6 +136,9 @@ chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %{python3_sitelib}/*
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:3.0.26-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Thu May 07 2015 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.26-1
 - Update to latest upstream version 3.0.26 (rhbz#1214720)
 
