@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.29
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -139,6 +139,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3/!' %{buildroot}/%{python3_sitelib}/k
 %{python3_sitelib}/*
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org>
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Mon Nov  9 2015 Toshio Kuratomi <toshio@fedoraproject.org> - - 3.0.29-2
 - Make it so the python3 subpackage doesn't drag in python2
 
