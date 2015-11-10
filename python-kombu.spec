@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.29
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -114,6 +114,7 @@ popd
 
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+### Note: Probably should rm -rf kombu/tests prior to install instead.
 #fix non executable test script
 chmod +x %{buildroot}/%{python_sitelib}/kombu/tests/test_serialization.py
 
@@ -122,8 +123,10 @@ chmod +x %{buildroot}/%{python_sitelib}/kombu/tests/test_serialization.py
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
+### Note: Probably should rm -rf kombu/tests prior to install instead.
 #fix non executable test script
 chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
+sed -i 's!/usr/bin/python$!/usr/bin/python3/!' %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %endif
 
 %files
@@ -136,6 +139,9 @@ chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %{python3_sitelib}/*
 
 %changelog
+* Mon Nov  9 2015 Toshio Kuratomi <toshio@fedoraproject.org> - - 3.0.29-2
+- Make it so the python3 subpackage doesn't drag in python2
+
 * Wed Oct 28 2015 Fabian Affolter <mail@fabian-affolter.ch> - 1:3.0.29-1
 - Update to latest upstream version 3.0.29 (rhbz#1275450)
 
