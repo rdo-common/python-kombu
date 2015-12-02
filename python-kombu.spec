@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.29
-Release:        3%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -21,17 +21,6 @@ BuildArch:      noarch
 
 BuildRequires:  python2-devel
 
-%if 0%{?with_python3}
-BuildRequires:  python3-devel
-BuildRequires:  python3-nose
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-anyjson
-
-# for python3 tests
-BuildRequires:  python3-mock
-BuildRequires:  python3-nose-cover3
-BuildRequires:  python3-coverage
-%endif # if with_python3
 
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
@@ -47,15 +36,6 @@ BuildRequires: python-msgpack
 BuildRequires: python-amqp
 BuildRequires: python-pymongo
 
-%if 0%{?with_python3}
-BuildRequires: python3-amqp
-BuildRequires: python3-pymongo
-
-# tests:
-BuildRequires: python3-nose
-BuildRequires: python3-nose-cover3
-BuildRequires: python3-mock
-%endif
 
 # For documentation
 #BuildRequires:  pymongo python-sphinx
@@ -81,6 +61,21 @@ Group:          Development/Languages
 
 Requires:       python3
 Requires:       python3-amqp
+Requires:       python3-anyjson
+BuildRequires:  python3-devel
+BuildRequires:  python3-nose
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-anyjson
+BuildRequires:  python3-amqp
+BuildRequires:  python3-pymongo
+
+# for python3 tests
+BuildRequires:  python3-mock
+BuildRequires:  python3-nose-cover3
+BuildRequires:  python3-coverage
+BuildRequires:  python3-nose
+
+
 
 %description -n python3-kombu
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -139,6 +134,10 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3/!' %{buildroot}/%{python3_sitelib}/k
 %{python3_sitelib}/*
 
 %changelog
+* Wed Dec 02 2015 Matthias Runge <mrunge@redhat.com> - 1:3.0.29-4
+- add requires: python3-anyjson
+- minor spec cleanup
+
 * Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org>
 - Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
 
