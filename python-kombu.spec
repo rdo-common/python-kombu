@@ -8,7 +8,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.29
-Release:        4%{?dist}
+Release:        5%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -59,7 +59,6 @@ also provide proven and tested solutions to common messaging problems.
 Summary:        AMQP Messaging Framework for Python3
 Group:          Development/Languages
 
-Requires:       python3
 Requires:       python3-amqp
 Requires:       python3-anyjson
 BuildRequires:  python3-devel
@@ -121,20 +120,21 @@ popd
 ### Note: Probably should rm -rf kombu/tests prior to install instead.
 #fix non executable test script
 chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
-sed -i 's!/usr/bin/python$!/usr/bin/python3/!' %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
+sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %endif
 
 %files
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
-%{python2_sitelib}/kombu
+%{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}*.egg-info
 
 %files -n python3-kombu
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
-%{python3_sitelib}/*
+%{python3_sitelib}/%{srcname}
+%{python3_sitelib}/kombu-%{version}-py%{python3_version}.egg-info
 
 %changelog
-* Wed Dec 02 2015 Matthias Runge <mrunge@redhat.com> - 1:3.0.29-4
+* Wed Dec 02 2015 Matthias Runge <mrunge@redhat.com> - 1:3.0.29-5
 - add requires: python3-anyjson
 - minor spec cleanup
 
