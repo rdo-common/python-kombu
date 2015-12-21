@@ -1,7 +1,5 @@
 %if 0%{?fedora}
 %global with_python3 1
-%else
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print (get_python_lib())")}
 %endif
 
 %global srcname kombu
@@ -110,7 +108,7 @@ popd
 %{__python2} setup.py install --skip-build --root %{buildroot}
 ### Note: Probably should rm -rf kombu/tests prior to install instead.
 #fix non executable test script
-chmod +x %{buildroot}/%{python_sitelib}/kombu/tests/test_serialization.py
+chmod +x %{buildroot}/%{python2_sitelib}/kombu/tests/test_serialization.py
 
 
 %if 0%{?with_python3}
@@ -128,10 +126,12 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}*.egg-info
 
+%if 0%{?with_python3}
 %files -n python3-kombu
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
 %{python3_sitelib}/%{srcname}
 %{python3_sitelib}/kombu-%{version}-py%{python3_version}.egg-info
+%endif
 
 %changelog
 * Wed Dec 02 2015 Matthias Runge <mrunge@redhat.com> - 1:3.0.29-5
