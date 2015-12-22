@@ -5,8 +5,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.29
-Release:        5%{?dist}
+Version:        3.0.32
+Release:        1%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -134,6 +134,11 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Tue Dec 22 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1:3.0.32-1
+- Upstream 3.0.32 (RHBZ#1289079)
+- Fix python3 guards
+- Bugfix for debug log flooding and redis transport
+
 * Wed Dec 02 2015 Matthias Runge <mrunge@redhat.com> - 1:3.0.29-5
 - add requires: python3-anyjson
 - minor spec cleanup
