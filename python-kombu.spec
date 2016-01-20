@@ -5,7 +5,7 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.32
+Version:        3.0.33
 Release:        1%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
@@ -39,7 +39,7 @@ BuildRequires: python-pymongo
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
 #BuildRequires:  python-couchdb
-Requires: python-amqp >= 1.4.5
+Requires: python-amqp >= 1.4.9
 Requires: python-anyjson >= 0.3.3
 
 %description
@@ -134,6 +134,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Wed Jan 20 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-1
+- Update to latest upstream version 3.0.33 (rhbz#1297116)
+
 * Tue Dec 22 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1:3.0.32-1
 - Upstream 3.0.32 (RHBZ#1289079)
 - Fix python3 guards
