@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.33
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -15,6 +15,7 @@ Group:          Development/Languages
 License:        BSD and Python
 URL:            http://pypi.python.org/pypi/%{srcname}
 Source0:        http://pypi.python.org/packages/source/k/%{srcname}/%{srcname}-%{version}.tar.gz
+Patch0:         563.patch
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -90,6 +91,8 @@ This subpackage is for python3
 %prep
 %setup -q -n %{srcname}-%{version}
 
+%patch0 -p1
+
 %if 0%{?with_python3}
 cp -a . %{py3dir}
 %endif
@@ -134,6 +137,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Wed Jan 27 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-2
+- Adds patch to fix upstream issue 563 (rhbz#1300811)
+
 * Wed Jan 20 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-1
 - Update to latest upstream version 3.0.33 (rhbz#1297116)
 
