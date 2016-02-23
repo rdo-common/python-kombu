@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.33
-Release:        3%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -16,6 +16,8 @@ License:        BSD and Python
 URL:            http://pypi.python.org/pypi/%{srcname}
 Source0:        http://pypi.python.org/packages/source/k/%{srcname}/%{srcname}-%{version}.tar.gz
 Patch0:         563.patch
+Patch1:         569.patch
+Patch2:         571.patch
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -92,6 +94,8 @@ This subpackage is for python3
 %setup -q -n %{srcname}-%{version}
 
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %if 0%{?with_python3}
 cp -a . %{py3dir}
@@ -137,6 +141,10 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Tue Feb 23 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-4
+- Adds patch to fix upstream issue 569
+- Adds patch to fix upstream issue 571
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1:3.0.33-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
