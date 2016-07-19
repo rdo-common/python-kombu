@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.33
-Release:        5%{?dist}
+Release:        6%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -143,6 +143,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:3.0.33-6
+- https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
+
 * Wed Apr 06 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-5
 - Adds patch to fix upstream issue 577
 
