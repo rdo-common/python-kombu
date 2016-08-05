@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        3.0.33
-Release:        6%{?dist}
+Release:        7%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -19,6 +19,7 @@ Patch0:         563.patch
 Patch1:         569.patch
 Patch2:         571.patch
 Patch3:         577.patch
+Patch4:         2124.patch
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -98,6 +99,7 @@ This subpackage is for python3
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %if 0%{?with_python3}
 cp -a . %{py3dir}
@@ -143,6 +145,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Fri Aug 05 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-7
+- Adds additional patch for 577 which prevents leaking file descriptors in Qpid transport
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:3.0.33-6
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
