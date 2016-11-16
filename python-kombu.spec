@@ -5,47 +5,48 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        3.0.33
+Version:        4.0.0
 Release:        7%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
-Group:          Development/Languages
 # utils/functional.py contains a header that says Python
 License:        BSD and Python
-URL:            http://pypi.python.org/pypi/%{srcname}
-Source0:        http://pypi.python.org/packages/source/k/%{srcname}/%{srcname}-%{version}.tar.gz
+URL:            http://kombu.readthedocs.org/
+Source0:        https://github.com/celery/kombu/archive/v%{version}.tar.gz#/%{srcname}-%{version}.tar.gz
 Patch0:         563.patch
 Patch1:         569.patch
 Patch2:         571.patch
 Patch3:         577.patch
 Patch4:         2124.patch
-BuildArch:      noarch
 
 BuildRequires:  python2-devel
-
-
+BuildRequires:  python3-devel
 BuildRequires:  python-setuptools
+BuildRequires:  python3-setuptools
 BuildRequires:  python-nose
+BuildRequires:  python3-nose
 BuildRequires:  python-anyjson
+BuildRequires:  python3-anyjson
+BuildRequires:  python3-amqp
+BuildRequires:  python3-pymongo
 
-# required for tests:
-BuildRequires: python-nose-cover3
-BuildRequires: python-coverage
-BuildRequires: python-mock
-BuildRequires: python-simplejson
-BuildRequires: PyYAML
-BuildRequires: python-msgpack
-BuildRequires: python-amqp
-BuildRequires: python-pymongo
-
+BuildRequires:  python-nose-cover3
+BuildRequires:  python-coverage
+BuildRequires:  python-mock
+BuildRequires:  python-simplejson
+BuildRequires:  PyYAML
+BuildRequires:  python-msgpack
+BuildRequires:  python-amqp
+BuildRequires:  python-pymongo
+BuildRequires:  python3-mock
+BuildRequires:  python3-nose-cover3
+BuildRequires:  python3-coverage
 
 # For documentation
 #BuildRequires:  pymongo python-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
 #BuildRequires:  python-couchdb
-Requires: python-amqp >= 1.4.9
-Requires: python-anyjson >= 0.3.3
 
 %description
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -57,29 +58,13 @@ The aim of Kombu is to make messaging in Python as easy as possible by
 providing an idiomatic high-level interface for the AMQP protocol, and
 also provide proven and tested solutions to common messaging problems.
 
-%if 0%{?with_python3}
-%package -n python3-kombu
-Summary:        AMQP Messaging Framework for Python3
-Group:          Development/Languages
+%package -n python2-%{srcname}
+Summary:        %{sum}
+Requires:       python-amqp >= 1.4.9
+Requires:       python-anyjson >= 0.3.3
+%{?python_provide:%python_provide python2-%{srcname}}
 
-Requires:       python3-amqp
-Requires:       python3-anyjson
-BuildRequires:  python3-devel
-BuildRequires:  python3-nose
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-anyjson
-BuildRequires:  python3-amqp
-BuildRequires:  python3-pymongo
-
-# for python3 tests
-BuildRequires:  python3-mock
-BuildRequires:  python3-nose-cover3
-BuildRequires:  python3-coverage
-BuildRequires:  python3-nose
-
-
-
-%description -n python3-kombu
+%description -n python2-%{srcname}
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
 for message orientation, queuing, routing, reliability and security.
 
@@ -89,8 +74,23 @@ The aim of Kombu is to make messaging in Python as easy as possible by
 providing an idiomatic high-level interface for the AMQP protocol, and
 also provide proven and tested solutions to common messaging problems.
 
-This subpackage is for python3
-%endif # with_python3
+%if 0%{?with_python3}
+%package -n python3-%{srcname}
+Summary:        %{summary}
+Requires:       python3-amqp
+Requires:       python3-anyjson
+%{?python_provide:%python_provide python3-%{srcname}}
+
+%description -n python3-%{srcname}
+AMQP is the Advanced Message Queuing Protocol, an open standard protocol
+for message orientation, queuing, routing, reliability and security.
+
+One of the most popular implementations of AMQP is RabbitMQ.
+
+The aim of Kombu is to make messaging in Python as easy as possible by
+providing an idiomatic high-level interface for the AMQP protocol, and
+also provide proven and tested solutions to common messaging problems.
+%endif
 
 %prep
 %setup -q -n %{srcname}-%{version}
@@ -106,45 +106,43 @@ cp -a . %{py3dir}
 %endif
 
 %build
-%{__python2} setup.py build
-
-# build python3-kombu
+%py2_build
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py build
-popd
-%endif # with_python3
+%py3_build
+%endif
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
 ### Note: Probably should rm -rf kombu/tests prior to install instead.
-#fix non executable test script
+# Fix non executable test script
 chmod +x %{buildroot}/%{python2_sitelib}/kombu/tests/test_serialization.py
 
-
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py install --skip-build --root %{buildroot}
-popd
+%py3_install
 ### Note: Probably should rm -rf kombu/tests prior to install instead.
-#fix non executable test script
+# Fix non executable test script
 chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %endif
 
-%files
-%doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
+%files -n python2-%{srcname}
+%doc AUTHORS Changelog FAQ READ* THANKS TODO examples/
+%license LICENSE
 %{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}*.egg-info
 
 %if 0%{?with_python3}
-%files -n python3-kombu
-%doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/
+%files -n python3-%{srcname}
+%doc AUTHORS Changelog FAQ READ* THANKS TODO examples/
+%license LICENSE
 %{python3_sitelib}/%{srcname}
 %{python3_sitelib}/kombu-%{version}-py%{python3_version}.egg-info
 %endif
 
 %changelog
+* Wed Nov 16 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1:4.0.0-1
+- Update to latest upstream version 4.0.0 (rhbz#1314754)
+
 * Fri Aug 05 2016 Brian Bouterse <bmbouter@redhat.com> - 1:3.0.33-7
 - Adds additional patch for 577 which prevents leaking file descriptors in Qpid transport
 
