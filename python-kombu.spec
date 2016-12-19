@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -140,6 +140,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 1:4.0.0-8
+- Rebuild for Python 3.6
+
 * Wed Nov 16 2016 Fabian Affolter <mail@fabian-affolter.ch> - 1:4.0.0-1
 - Update to latest upstream version 4.0.0 (rhbz#1314754)
 
