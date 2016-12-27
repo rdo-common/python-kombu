@@ -5,8 +5,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        4.0.0
-Release:        8%{?dist}
+Version:        4.0.2
+Release:        1%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -14,22 +14,13 @@ Summary:        An AMQP Messaging Framework for Python
 License:        BSD and Python
 URL:            http://kombu.readthedocs.org/
 Source0:        https://github.com/celery/kombu/archive/v%{version}.tar.gz#/%{srcname}-%{version}.tar.gz
-Patch0:         563.patch
-Patch1:         569.patch
-Patch2:         571.patch
-Patch3:         577.patch
-Patch4:         2124.patch
+
+BuildArch: noarch
 
 BuildRequires:  python2-devel
-BuildRequires:  python3-devel
 BuildRequires:  python-setuptools
-BuildRequires:  python3-setuptools
 BuildRequires:  python-nose
-BuildRequires:  python3-nose
 BuildRequires:  python-anyjson
-BuildRequires:  python3-anyjson
-BuildRequires:  python3-amqp
-BuildRequires:  python3-pymongo
 
 BuildRequires:  python-nose-cover3
 BuildRequires:  python-coverage
@@ -39,9 +30,6 @@ BuildRequires:  PyYAML
 BuildRequires:  python-msgpack
 BuildRequires:  python-amqp
 BuildRequires:  python-pymongo
-BuildRequires:  python3-mock
-BuildRequires:  python3-nose-cover3
-BuildRequires:  python3-coverage
 
 # For documentation
 #BuildRequires:  pymongo python-sphinx
@@ -62,6 +50,10 @@ also provide proven and tested solutions to common messaging problems.
 Summary:        %{sum}
 Requires:       python-amqp >= 1.4.9
 Requires:       python-anyjson >= 0.3.3
+
+# test requirements
+BuildRequires:  python2-pytest
+BuildRequires:  python2-pytest-cov
 %{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
@@ -79,6 +71,15 @@ also provide proven and tested solutions to common messaging problems.
 Summary:        %{summary}
 Requires:       python3-amqp
 Requires:       python3-anyjson
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-mock
+BuildRequires:  python3-nose-cover3
+BuildRequires:  python3-coverage
+BuildRequires:  python3-anyjson
+BuildRequires:  python3-amqp
+BuildRequires:  python3-pymongo
+BuildRequires:  python3-nose
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -93,17 +94,7 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %prep
-%setup -q -n %{srcname}-%{version}
-
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-
-%if 0%{?with_python3}
-cp -a . %{py3dir}
-%endif
+%autosetup -n %{srcname}-%{version}
 
 %build
 %py2_build
@@ -113,17 +104,14 @@ cp -a . %{py3dir}
 
 %install
 %py2_install
-### Note: Probably should rm -rf kombu/tests prior to install instead.
-# Fix non executable test script
-chmod +x %{buildroot}/%{python2_sitelib}/kombu/tests/test_serialization.py
 
 %if 0%{?with_python3}
 %py3_install
-### Note: Probably should rm -rf kombu/tests prior to install instead.
-# Fix non executable test script
-chmod +x %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
-sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/kombu/tests/test_serialization.py
 %endif
+
+%check
+# test requires python-vine, which is not packaged yet
+#py.test -xv --cov=kombu --cov-report=xml --no-cov-on-fail
 
 %files -n python2-%{srcname}
 %doc AUTHORS Changelog FAQ READ* THANKS TODO examples/
@@ -140,6 +128,9 @@ sed -i 's!/usr/bin/python$!/usr/bin/python3!' %{buildroot}/%{python3_sitelib}/ko
 %endif
 
 %changelog
+* Tue Dec 27 2016 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-1
+- fixed FTBFS, upgraded to 4.0.2 (rhbz#1314754)
+
 * Mon Dec 19 2016 Miro Hrončok <mhroncok@redhat.com> - 1:4.0.0-8
 - Rebuild for Python 3.6
 
