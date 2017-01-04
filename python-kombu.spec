@@ -131,7 +131,7 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
-* Wed Jan 04 2016 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-2
+* Wed Jan 04 2017 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-2
 - add requires: python[23]-vine (rhbz#1409908)
 
 * Tue Dec 27 2016 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-1
