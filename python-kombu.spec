@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -50,6 +50,7 @@ also provide proven and tested solutions to common messaging problems.
 Summary:        %{sum}
 Requires:       python-amqp >= 1.4.9
 Requires:       python-anyjson >= 0.3.3
+Requires:       python2-vine
 
 # test requirements
 BuildRequires:  python2-pytest
@@ -71,6 +72,8 @@ also provide proven and tested solutions to common messaging problems.
 Summary:        %{summary}
 Requires:       python3-amqp
 Requires:       python3-anyjson
+Requires:       python3-vine
+
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-mock
@@ -128,6 +131,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Wed Jan 04 2016 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-2
+- add requires: python[23]-vine (rhbz#1409908)
+
 * Tue Dec 27 2016 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-1
 - fixed FTBFS, upgraded to 4.0.2 (rhbz#1314754)
 
