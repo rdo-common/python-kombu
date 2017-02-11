@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -131,6 +131,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Wed Jan 04 2017 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-2
 - add requires: python[23]-vine (rhbz#1409908)
 
