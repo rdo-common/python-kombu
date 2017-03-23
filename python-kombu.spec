@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        2%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -14,6 +14,9 @@ Summary:        An AMQP Messaging Framework for Python
 License:        BSD and Python
 URL:            http://kombu.readthedocs.org/
 Source0:        https://github.com/celery/kombu/archive/v%{version}.tar.gz#/%{srcname}-%{version}.tar.gz
+
+# This can be removed in 4.0.3+
+Patch0: qpid-transport-works-with-celery-4.patch
 
 BuildArch: noarch
 
@@ -103,7 +106,7 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{version} -p1
 
 %build
 %py2_build
@@ -137,6 +140,12 @@ py.test -xv --cov=kombu --cov-report=xml --no-cov-on-fail
 %endif
 
 %changelog
+* Sun Feb 26 2017 Brian Bouterse <bmbouter@redhat.com> - 1:4.0.2-4
+- Adds upstream patch for 699 preventing the Qpid transport from working with Celery 4
+
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Wed Jan 04 2017 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-2
 - add requires: python[23]-vine (rhbz#1409908)
 
