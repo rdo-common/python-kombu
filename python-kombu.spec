@@ -48,13 +48,16 @@ also provide proven and tested solutions to common messaging problems.
 
 %package -n python2-%{srcname}
 Summary:        %{sum}
-Requires:       python-amqp >= 1.4.9
+Requires:       python-amqp >= 2.1.4
 Requires:       python-anyjson >= 0.3.3
 Requires:       python2-vine
 
 # test requirements
 BuildRequires:  python2-pytest
 BuildRequires:  python2-pytest-cov
+BuildRequires:  python2-vine
+BuildRequires:  python2-case
+BuildRequires:  pytz
 %{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
@@ -70,7 +73,7 @@ also provide proven and tested solutions to common messaging problems.
 %if 0%{?with_python3}
 %package -n python3-%{srcname}
 Summary:        %{summary}
-Requires:       python3-amqp
+Requires:       python3-amqp >= 2.1.4
 Requires:       python3-anyjson
 Requires:       python3-vine
 
@@ -83,6 +86,9 @@ BuildRequires:  python3-anyjson
 BuildRequires:  python3-amqp
 BuildRequires:  python3-pymongo
 BuildRequires:  python3-nose
+BuildRequires:  python3-vine
+BuildRequires:  python3-case
+BuildRequires:  python3-pytz
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -114,7 +120,7 @@ also provide proven and tested solutions to common messaging problems.
 
 %check
 # test requires python-vine, which is not packaged yet
-#py.test -xv --cov=kombu --cov-report=xml --no-cov-on-fail
+py.test -xv --cov=kombu --cov-report=xml --no-cov-on-fail
 
 %files -n python2-%{srcname}
 %doc AUTHORS Changelog FAQ READ* THANKS TODO examples/
