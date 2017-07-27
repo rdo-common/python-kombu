@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -140,6 +140,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.2-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Fri Mar 24 2017 Matthias Runge <mrunge@redhat.com> - 1:4.0.2-5
 - disable checks temporarily, until they are fixed
 
