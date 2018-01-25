@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.0.2
-Release:        6%{?dist}
+Release:        7%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -21,23 +21,23 @@ Patch0: qpid-transport-works-with-celery-4.patch
 BuildArch: noarch
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
-BuildRequires:  python-nose
-BuildRequires:  python-anyjson
+BuildRequires:  python2-setuptools
+BuildRequires:  python2-nose
+BuildRequires:  python2-anyjson
 
-BuildRequires:  python-nose-cover3
-BuildRequires:  python-coverage
-BuildRequires:  python-mock
-BuildRequires:  python-simplejson
-BuildRequires:  PyYAML
-BuildRequires:  python-msgpack
-BuildRequires:  python-amqp
-BuildRequires:  python-pymongo
+BuildRequires:  python2-nose-cover3
+BuildRequires:  python2-coverage
+BuildRequires:  python2-mock
+BuildRequires:  python2-simplejson
+BuildRequires:  python2-pyyaml
+BuildRequires:  python2-msgpack
+BuildRequires:  python2-amqp
+BuildRequires:  python2-pymongo
 
 # For documentation
-#BuildRequires:  pymongo python-sphinx
+#BuildRequires:  python2-pymongo python2-sphinx
 #This causes tests error, needs fixing upstream. Incompatible with python > 2.7
-#BuildRequires:  python-couchdb
+#BuildRequires:  python2-couchdb
 
 %description
 AMQP is the Advanced Message Queuing Protocol, an open standard protocol
@@ -51,8 +51,8 @@ also provide proven and tested solutions to common messaging problems.
 
 %package -n python2-%{srcname}
 Summary:        %{sum}
-Requires:       python-amqp >= 2.1.4
-Requires:       python-anyjson >= 0.3.3
+Requires:       python2-amqp >= 2.1.4
+Requires:       python2-anyjson >= 0.3.3
 Requires:       python2-vine
 
 # test requirements
@@ -60,7 +60,7 @@ BuildRequires:  python2-pytest
 BuildRequires:  python2-pytest-cov
 BuildRequires:  python2-vine
 BuildRequires:  python2-case
-BuildRequires:  pytz
+BuildRequires:  python2-pytz
 %{?python_provide:%python_provide python2-%{srcname}}
 
 %description -n python2-%{srcname}
@@ -140,6 +140,10 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Thu Jan 25 2018 Iryna Shcherbina <ishcherb@redhat.com> - 1:4.0.2-7
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.2-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
