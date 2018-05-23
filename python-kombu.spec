@@ -5,8 +5,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        4.0.2
-Release:        8%{?dist}
+Version:        4.2.0
+Release:        1%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -14,9 +14,6 @@ Summary:        An AMQP Messaging Framework for Python
 License:        BSD and Python
 URL:            http://kombu.readthedocs.org/
 Source0:        https://github.com/celery/kombu/archive/v%{version}.tar.gz#/%{srcname}-%{version}.tar.gz
-
-# This can be removed in 4.0.3+
-Patch0: qpid-transport-works-with-celery-4.patch
 
 BuildArch: noarch
 
@@ -140,6 +137,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Wed May 23 2018 Matthias Runge <mrunge@redhat.com> - 1:4.2.0-1
+- update to 4.2.0 (rhbz#1473462)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.2-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
