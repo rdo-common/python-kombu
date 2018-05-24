@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        4.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -20,7 +20,6 @@ BuildArch: noarch
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-nose
-BuildRequires:  python2-anyjson
 
 BuildRequires:  python2-nose-cover3
 BuildRequires:  python2-coverage
@@ -49,7 +48,6 @@ also provide proven and tested solutions to common messaging problems.
 %package -n python2-%{srcname}
 Summary:        %{sum}
 Requires:       python2-amqp >= 2.1.4
-Requires:       python2-anyjson >= 0.3.3
 Requires:       python2-vine
 
 # test requirements
@@ -74,7 +72,6 @@ also provide proven and tested solutions to common messaging problems.
 %package -n python3-%{srcname}
 Summary:        %{summary}
 Requires:       python3-amqp >= 2.1.4
-Requires:       python3-anyjson
 Requires:       python3-vine
 
 BuildRequires:  python3-devel
@@ -82,7 +79,6 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-mock
 BuildRequires:  python3-nose-cover3
 BuildRequires:  python3-coverage
-BuildRequires:  python3-anyjson
 BuildRequires:  python3-amqp
 BuildRequires:  python3-pymongo
 BuildRequires:  python3-nose
@@ -137,6 +133,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Thu May 24 2018 Matthias Runge <mrunge@redhat.com> - 1:4.2.0-2
+- drop anyjson dependency
+
 * Wed May 23 2018 Matthias Runge <mrunge@redhat.com> - 1:4.2.0-1
 - update to 4.2.0 (rhbz#1473462)
 
