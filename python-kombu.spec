@@ -21,14 +21,12 @@ BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-nose
 
-BuildRequires:  python2-nose-cover3
-BuildRequires:  python2-coverage
 BuildRequires:  python2-mock
-BuildRequires:  python2-simplejson
-BuildRequires:  python2-pyyaml
-BuildRequires:  python2-msgpack
+BuildRequires:  python-simplejson
+BuildRequires:  PyYAML
+BuildRequires:  python-msgpack
 BuildRequires:  python2-amqp
-BuildRequires:  python2-pymongo
+BuildRequires:  python-pymongo
 
 # For documentation
 #BuildRequires:  python2-pymongo python2-sphinx
@@ -54,7 +52,6 @@ Requires:       python2-vine
 BuildRequires:  python2-pytest
 BuildRequires:  python2-pytest-cov
 BuildRequires:  python2-vine
-BuildRequires:  python2-case
 BuildRequires:  python2-pytz
 %{?python_provide:%python_provide python2-%{srcname}}
 
