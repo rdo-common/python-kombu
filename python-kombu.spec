@@ -5,8 +5,8 @@
 %global srcname kombu
 
 Name:           python-%{srcname}
-Version:        4.2.0
-Release:        2%{?dist}
+Version:        4.2.1
+Release:        1%{?dist}
 Epoch:          1
 Summary:        An AMQP Messaging Framework for Python
 
@@ -133,6 +133,9 @@ also provide proven and tested solutions to common messaging problems.
 %endif
 
 %changelog
+* Mon Jun 04 2018 Matthias Runge <mrunge@redhat.com> - 1:4.2.1-1
+- update to 4.2.1 (rhbz#1584452)
+
 * Thu May 24 2018 Matthias Runge <mrunge@redhat.com> - 1:4.2.0-2
 - drop anyjson dependency
 
